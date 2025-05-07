@@ -69,7 +69,7 @@ getIBDparameters <- function(ped.genotypes, number.cores = 1){
   number.quantiles <- length(pair.quantiles)
 
   # create progress bar
-  #pb <- txtProgressBar(min = 0, max = number.quantiles, style = 3)
+  pb <- txtProgressBar(min = 0, max = number.quantiles, style = 3)
 
   # define number of cores
   doParallel::registerDoParallel(cores=number.cores)
@@ -88,7 +88,7 @@ getIBDparameters <- function(ped.genotypes, number.cores = 1){
       pair.group <- start:nrow(isolate.pairs)
 
     # get IBD parameters for subgroups of pairs
-    ibd.estimates.0 <- foreach::foreach(pair.i=pair.group, .combine='mergeLists1') %dopar% {
+    ibd.estimates.0 <- foreach::foreach(pair.i=pair.group, .combine='mergeLists1', .export = c("pair.group", "mergeLists1")) %dopar% {
       fid.1    <- as.character(isolate.pairs[pair.i,1])
       iid.1    <- as.character(isolate.pairs[pair.i,2])
       fid.2    <- as.character(isolate.pairs[pair.i,3])
@@ -135,7 +135,7 @@ getIBDparameters <- function(ped.genotypes, number.cores = 1){
       start <- start + pair.quantiles[quantile.group+1] - pair.quantiles[quantile.group]
 
     # update progress bar
-    # setTxtProgressBar(pb, quantile.group)
+     setTxtProgressBar(pb, quantile.group)
   }
   close(pb)
 
