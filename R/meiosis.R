@@ -42,7 +42,9 @@ calculateMeiosis <- function(omega.0,omega.1,omega.2){
 # @param gender_2 An integer denoting the MOI value of isoalte 2.
 # @return A vector of 4 values representing the number of meiosis and the probabilities of sharing 0, 1 and 2 alleles IBD respectively.
 IBDparameters <- function(genotypes, pop_allele_freqs, gender_1, gender_2, chromosome){
-  x <- NULL  # ensure it's defined
+  x[1] <- 0
+  x[2] <- 0
+  x[3] <- 0
   if (chromosome == 23 & gender_1 == 1 & gender_2 == 1) {
     b <- bVectorHH(genotypes)
     A <- AmatrixHH(pop_allele_freqs,genotypes)
