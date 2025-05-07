@@ -255,6 +255,7 @@ getGenotypes <- function(ped.map, reference.ped.map = NULL, snp.ld = NULL, model
 
   # call genotypes
   input.matrix        <- as.matrix(input.ped.v1[,7:ncol(input.ped.v1)])
+  mode(input.matrix)  <- "integer"
   input.genders       <- input.ped.v1[,5]
   input.chromosomes   <- input.map.v2[,1]
   input.genotypes.v0  <- cbind(input.map.v2, haplotypeToGenotype(input.matrix, input.chromosomes, input.genders))
