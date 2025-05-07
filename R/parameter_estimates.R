@@ -69,7 +69,7 @@ getIBDparameters <- function(ped.genotypes, number.cores = 1){
   number.quantiles <- length(pair.quantiles)
 
   # create progress bar
-  pb <- txtProgressBar(min = 0, max = number.quantiles, style = 3)
+  #pb <- txtProgressBar(min = 0, max = number.quantiles, style = 3)
 
   # define number of cores
   doParallel::registerDoParallel(cores=number.cores)
