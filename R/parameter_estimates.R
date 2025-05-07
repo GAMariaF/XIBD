@@ -88,7 +88,12 @@ getIBDparameters <- function(ped.genotypes, number.cores = 1){
       pair.group <- start:nrow(isolate.pairs)
 
     # get IBD parameters for subgroups of pairs
-    ibd.estimates.0 <- foreach::foreach(pair.i=pair.group, .combine='mergeLists1', .export = c("pair.group", "mergeLists1")) %dopar% {
+    ibd.estimates.0 <- foreach::foreach(pair.i=pair.group, .combine='mergeLists1'.export = c("pair.group", 
+                                                "mergeLists1", 
+                                                "isolate.pairs", 
+                                                "pedigree", 
+                                                "genotypes", 
+                                                "IBDparameters")) %dopar% {
       fid.1    <- as.character(isolate.pairs[pair.i,1])
       iid.1    <- as.character(isolate.pairs[pair.i,2])
       fid.2    <- as.character(isolate.pairs[pair.i,3])
