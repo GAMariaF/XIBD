@@ -135,7 +135,7 @@ getIBDparameters <- function(ped.genotypes, number.cores = 1){
       start <- start + pair.quantiles[quantile.group+1] - pair.quantiles[quantile.group]
 
     # update progress bar
-    setTxtProgressBar(pb, quantile.group)
+    # setTxtProgressBar(pb, quantile.group)
   }
   close(pb)
 
